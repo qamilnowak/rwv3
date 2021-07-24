@@ -18,9 +18,13 @@ export default {
     }
   },
   created() {
-    EventService.getEvents().then((response) => {
-      this.events = response.data
-    })
+    EventService.getEvents()
+      .then((response) => {
+        this.events = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   },
 }
 </script>
