@@ -5,6 +5,8 @@ import EventLayout from '../views/event/Layout.vue'
 import EventRegister from '../views/event/Register.vue'
 import EventEdit from '../views/event/Edit.vue'
 import About from '../views/About.vue'
+import NotFound from '@/views/NotFound'
+import NetworkError from '@/views/NetworkError'
 
 const routes = [
   {
@@ -38,7 +40,7 @@ const routes = [
   },
   {
     path: '/event/:afterEvent(.*)',
-    redirect: to => {
+    redirect: (to) => {
       return { path: '/events/' + to.params.afterEvent }
     },
   },
@@ -46,6 +48,21 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About,
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound,
+  },
+  {
+    path: '/404/:resource',
+    name: '404Resource',
+    component: NotFound,
+  },
+  {
+    path: '/network-error',
+    name: 'NetworkError',
+    component: NetworkError,
   },
 ]
 
