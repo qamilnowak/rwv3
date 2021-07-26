@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EventList from '../views/EventList.vue'
-import EventDetails from '../views/event/Details.vue'
-import EventLayout from '../views/event/Layout.vue'
-import EventRegister from '../views/event/Register.vue'
-import EventEdit from '../views/event/Edit.vue'
-import About from '../views/About.vue'
+import GStore from '@/store/GStore'
+import NProgress from 'nprogress'
+import EventList from '@/views/EventList.vue'
+import EventDetails from '@/views/event/Details.vue'
+import EventLayout from '@/views/event/Layout.vue'
+import EventRegister from '@/views/event/Register.vue'
+import EventEdit from '@/views/event/Edit.vue'
+import EventCreate from '@/views/event/Create.vue'
 import NotFound from '@/views/NotFound'
 import NetworkError from '@/views/NetworkError'
-import NProgress from 'nprogress'
 import EventService from '@/services/EventService'
-import GStore from '@/store'
+import About from '@/views/About.vue'
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     },
   },
   {
+    path: '/events/create',
+    name: 'EventCreate',
+    component: EventCreate,
+  },
+  {
     path: '/about',
     name: 'About',
     component: About,
@@ -90,6 +96,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
 })
 
 router.beforeEach(() => {

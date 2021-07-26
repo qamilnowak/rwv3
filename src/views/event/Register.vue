@@ -9,7 +9,8 @@ export default {
   props: ['event'],
   methods: {
     register() {
-      this.GStore.flashMessage = 'You are successfully registered for' + this.event.title
+      this.GStore.flashMessage =
+        'You are successfully registered for: ' + this.event.title
       setTimeout(() => {
         this.GStore.flashMessage = ''
       }, 3000)
